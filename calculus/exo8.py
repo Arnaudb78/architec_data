@@ -1,27 +1,23 @@
 import random
 
 
-def deviner_nombre():
-    nombre_mystere = random.randint(1, 100)
-    nombre_tentatives = 5  # Nombre de tentatives autorisées
+def guess_number_game(max_attempts=10):
+    # Génère un nombre aléatoire entre 1 et 100
+    number_to_guess = random.randint(1, 100)
+    print("J'ai choisi un nombre entre 1 et 100. Pouvez-vous le deviner?")
 
-    print("Bienvenue dans le jeu de deviner le nombre !")
-    print("Je pense à un nombre entre 1 et 100. A vous de deviner !")
+    for attempt in range(max_attempts):
+        try:
+            # Demande à l'utilisateur de faire une tentative
+            guess = int(input(f"Tentative {attempt + 1}/{max_attempts} - Devinez le nombre : "))
+        except ValueError:
+            print("Veuillez entrer un nombre valide.")
+            continue
 
-    for tentative in range(1, nombre_tentatives + 1):
-        tentative_utilisateur = int(
-            input(f"Tentative {tentative}/{nombre_tentatives}. Entrez votre guess : "))
-
-        if tentative_utilisateur < nombre_mystere:
-            print("Le nombre mystère est plus grand !")
-        elif tentative_utilisateur > nombre_mystere:
-            print("Le nombre mystère est plus petit !")
-        else:
-            print(f"Félicitations ! Vous avez deviné le nombre mystère ({nombre_mystere}) en {tentative} tentatives !")
+        # Vérifie si la saisie est correcte
+        if guess == number_to_guess:
+            print(f"Bravo! Vous avez trouvé le nombre mystère en {attempt + 1} tentatives.")
             return
+        print("Le nombre mystère est plus grand." if guess < number_to_guess else "Le nombre mystère est plus petit.")
 
-    print(f"Désolé, vous avez utilisé toutes vos {nombre_tentatives} tentatives. Le nombre mystère était {nombre_mystere}.")
-
-
-# Exemple d'utilisation
-deviner_nombre()
+    print(f"Désolé, vous avez utilisé toutes vos tentatives. Le nombre était : {number_to_guess}")
