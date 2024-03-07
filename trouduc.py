@@ -1,2 +1,0 @@
-def caca():
-    return "caca"
