@@ -11,3 +11,10 @@ Pour installer les dépendances du projet, vous pouvez utiliser pip :
 ```bash
 pip install -r requirements.txt
 ```
+
+## Commande de test
+
+'''
+flake8 --statistics
+pytest --cov
+'''

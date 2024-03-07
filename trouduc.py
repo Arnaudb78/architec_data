@@ -1,0 +1,2 @@
+def caca():
+    return "caca"
